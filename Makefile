@@ -20,6 +20,10 @@ startonly:
 stop:
 	@docker-compose stop
 
+pull:
+	@docker-compose -f docker-compose-migrate.yml pull
+	@docker-compose pull
+
 push:
 	@docker push mbentley/notary-server
 	@docker push mbentley/notary-signer
