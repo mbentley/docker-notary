@@ -10,3 +10,5 @@ These are minimal images for deploying notary services.  ALl images are currentl
 `make start` - runs migrations and starts notary services
 
 `make startonly` - starts notary services (skips migrations)
+
+To enable notary services in DTR, set the URL to `https://notaryserver:4443`

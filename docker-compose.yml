@@ -1,29 +1,26 @@
 version: "2"
 
 services:
-  server:
+  notaryserver:
     image: mbentley/notary-server:0.2.0
     restart: unless-stopped
     links:
-      - mysql
-      - signer
-      - signer:notarysigner
+      - notarymysql
+      - notarysigner
     networks:
       - dtr
-    ports:
-      - "4443:4443"
     command: -config=/notary/server/server-config.json
 
-  signer:
+  notarysigner:
     image: mbentley/notary-signer:0.2.0
     restart: unless-stopped
     links:
-      - mysql
+      - notarymysql
     networks:
       - dtr
     command: -config=/notary/server/signer-config.json
 
-  mysql:
+  notarymysql:
     image: mbentley/notary-mariadb:0.2.0
     restart: unless-stopped
     volumes:

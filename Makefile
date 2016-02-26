@@ -17,6 +17,9 @@ start: migrate
 startonly:
 	@docker-compose up -d
 
+stop:
+	@docker-compose stop
+
 push:
 	@docker push mbentley/notary-server
 	@docker push mbentley/notary-signer
