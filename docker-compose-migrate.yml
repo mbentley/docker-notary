@@ -8,7 +8,7 @@ services:
     environment:
       - SERVICE_NAME=notary_server
     networks:
-      - dtr
+      - notary
 
   migrate-signer:
     image: mbentley/notary-migrate:0.2.0
@@ -17,7 +17,7 @@ services:
     environment:
       - SERVICE_NAME=notary_signer
     networks:
-      - dtr
+      - notary
 
   mysql:
     image: mbentley/notary-mariadb:0.2.0
@@ -27,7 +27,7 @@ services:
       - TERM=dumb
       - MYSQL_ALLOW_EMPTY_PASSWORD="true"
     networks:
-      - dtr
+      - notary
     command: mysqld --innodb_file_per_table
 
 volumes:
@@ -35,6 +35,5 @@ volumes:
     driver: local
 
 networks:
-  dtr:
-    external:
-      name: dtr
+  notary:
+    driver: bridge

@@ -3,6 +3,7 @@ version: "2"
 services:
   server:
     image: mbentley/notary-server:0.2.0
+    restart: unless-stopped
     links:
       - mysql
       - signer
@@ -15,6 +16,7 @@ services:
 
   signer:
     image: mbentley/notary-signer:0.2.0
+    restart: unless-stopped
     links:
       - mysql
     networks:
@@ -23,6 +25,7 @@ services:
 
   mysql:
     image: mbentley/notary-mariadb:0.2.0
+    restart: unless-stopped
     volumes:
       - notary_data:/var/lib/mysql
     environment:
