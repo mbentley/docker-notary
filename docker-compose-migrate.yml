@@ -1,0 +1,40 @@
+version: "2"
+
+services:
+  migrate-server:
+    image: mbentley/notary-migrate:0.2.0
+    links:
+      - mysql
+    environment:
+      - SERVICE_NAME=notary_server
+    networks:
+      - dtr
+
+  migrate-signer:
+    image: mbentley/notary-migrate:0.2.0
+    links:
+      - mysql
+    environment:
+      - SERVICE_NAME=notary_signer
+    networks:
+      - dtr
+
+  mysql:
+    image: mbentley/notary-mariadb:0.2.0
+    volumes:
+      - notary_data:/var/lib/mysql
+    environment:
+      - TERM=dumb
+      - MYSQL_ALLOW_EMPTY_PASSWORD="true"
+    networks:
+      - dtr
+    command: mysqld --innodb_file_per_table
+
+volumes:
+  notary_data:
+    driver: local
+
+networks:
+  dtr:
+    external:
+      name: dtr

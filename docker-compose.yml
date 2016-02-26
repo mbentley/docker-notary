@@ -1,0 +1,42 @@
+version: "2"
+
+services:
+  server:
+    image: mbentley/notary-server:0.2.0
+    links:
+      - mysql
+      - signer
+      - signer:notarysigner
+    networks:
+      - dtr
+    ports:
+      - "4443:4443"
+    command: -config=/notary/server/server-config.json
+
+  signer:
+    image: mbentley/notary-signer:0.2.0
+    links:
+      - mysql
+    networks:
+      - dtr
+    command: -config=/notary/server/signer-config.json
+
+  mysql:
+    image: mbentley/notary-mariadb:0.2.0
+    volumes:
+      - notary_data:/var/lib/mysql
+    environment:
+      - TERM=dumb
+      - MYSQL_ALLOW_EMPTY_PASSWORD="true"
+    networks:
+      - dtr
+    command: mysqld --innodb_file_per_table
+
+volumes:
+  notary_data:
+    driver: local
+
+networks:
+  dtr:
+    external:
+      name: dtr
