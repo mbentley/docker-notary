@@ -42,4 +42,4 @@ volumes:
 networks:
   dtr:
     external:
-      name: dtr
+      name: dtr-br
