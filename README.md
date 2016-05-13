@@ -1,7 +1,7 @@
 Docker Notary Images for Deployment
 ===================================
 
-These are minimal images for deploying notary services.  All images are currently based on notary 0.2.0.
+These are minimal images for deploying notary services.  All images are currently based on notary 0.2.0.  You will need to ensure ou have `make` and `docker-compose` installed.
 
 `make build` - builds images
 
