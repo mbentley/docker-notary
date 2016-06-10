@@ -2,7 +2,7 @@ version: "2"
 
 services:
   notaryserver:
-    image: notary:server-0.3.0
+    image: mbentley/notary-server:0.3.0
     restart: unless-stopped
     depends_on:
       - notarymysql
@@ -14,7 +14,7 @@ services:
     command: -config=/notary/server/server-config.json
 
   notarysigner:
-    image: notary:signer-0.3.0
+    image: mbentley/notary-signer:0.3.0
     restart: unless-stopped
     environment:
       - NOTARY_SIGNER_DEFAULT_ALIAS=timestamp_1
@@ -28,7 +28,7 @@ services:
     command: -config=/notary/server/signer-config.json
 
   notarymysql:
-    image: mbentley/notary-mariadb:0.2.0
+    image: mbentley/notary-mariadb:0.3.0
     restart: unless-stopped
     volumes:
       - notary_data:/var/lib/mysql

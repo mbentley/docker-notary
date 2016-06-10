@@ -1,10 +1,10 @@
 all: build
 
 build:
-	@docker build -t mbentley/notary-server:0.2.0 -t mbentley/notary-server:latest ./notary-server
-	@docker build -t mbentley/notary-signer:0.2.0 -t mbentley/notary-signer:latest ./notary-signer
-	@docker build -t mbentley/notary-migrate:0.2.0 -t mbentley/notary-migrate:latest ./notary-migrate
-	@docker build -t mbentley/notary-mariadb:0.2.0 -t mbentley/notary-mariadb:latest ./notary-mariadb
+	@docker build -t mbentley/notary-server:0.3.0 -t mbentley/notary-server:latest ./notary-server
+	@docker build -t mbentley/notary-signer:0.3.0 -t mbentley/notary-signer:latest ./notary-signer
+	@docker build -t mbentley/notary-migrate:0.3.0 -t mbentley/notary-migrate:latest ./notary-migrate
+	@docker build -t mbentley/notary-mariadb:0.3.0 -t mbentley/notary-mariadb:latest ./notary-mariadb
 
 migrate:
 	@docker-compose -f docker-compose-migrate.yml up migrate-server migrate-signer
