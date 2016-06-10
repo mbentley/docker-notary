@@ -2,8 +2,8 @@ version: "2"
 
 services:
   migrate-server:
-    image: mbentley/notary-migrate:0.2.0
-    links:
+    image: mbentley/notary-migrate:0.3.0
+    depends_on:
       - mysql
     environment:
       - SERVICE_NAME=notary_server
@@ -11,8 +11,8 @@ services:
       - notary
 
   migrate-signer:
-    image: mbentley/notary-migrate:0.2.0
-    links:
+    image: mbentley/notary-migrate:0.3.0
+    depends_on:
       - mysql
     environment:
       - SERVICE_NAME=notary_signer
@@ -20,7 +20,7 @@ services:
       - notary
 
   mysql:
-    image: mbentley/notary-mariadb:0.2.0
+    image: mbentley/notary-mariadb:0.3.0
     volumes:
       - notary_data:/var/lib/mysql
     environment:
