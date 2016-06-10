@@ -2,25 +2,29 @@ version: "2"
 
 services:
   notaryserver:
-    image: mbentley/notary-server:0.2.0
+    image: notary:server-0.3.0
     restart: unless-stopped
-    links:
+    depends_on:
       - notarymysql
       - notarysigner
     networks:
-      - dtr
+      dtr-ol:
+        aliases:
+          - server
     command: -config=/notary/server/server-config.json
 
   notarysigner:
-    image: mbentley/notary-signer:0.2.0
+    image: notary:signer-0.3.0
     restart: unless-stopped
     environment:
       - NOTARY_SIGNER_DEFAULT_ALIAS=timestamp_1
       - NOTARY_SIGNER_TIMESTAMP_1=testpassword
-    links:
+    depends_on:
       - notarymysql
     networks:
-      - dtr
+      dtr-ol:
+        aliases:
+          - signer
     command: -config=/notary/server/signer-config.json
 
   notarymysql:
@@ -32,7 +36,9 @@ services:
       - TERM=dumb
       - MYSQL_ALLOW_EMPTY_PASSWORD="true"
     networks:
-      - dtr
+      dtr-ol:
+        aliases:
+          - mysql
     command: mysqld --innodb_file_per_table
 
 volumes:
@@ -40,6 +46,6 @@ volumes:
     driver: local
 
 networks:
-  dtr:
+  dtr-ol:
     external:
-      name: dtr-br
+      name: dtr-ol
