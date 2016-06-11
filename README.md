@@ -1,7 +1,7 @@
 Docker Notary Images for Deployment
 ===================================
 
-These are minimal images for deploying notary services.  All images are currently based on notary 0.2.0.  You will need to ensure ou have `make` and `docker-compose` installed.
+These are minimal images for deploying notary services.  All images are currently based on notary 0.3.0.  You will need to ensure ou have `make` and `docker-compose` installed.
 
 `make build` - builds images
 
@@ -12,3 +12,5 @@ These are minimal images for deploying notary services.  All images are currentl
 `make startonly` - starts notary services (skips migrations)
 
 To enable notary services in DTR, set the URL to `https://notaryserver:4443`
+
+If you're using DTR 1.4.x, make sure to change the external network name in `docker-compose.yml` from `dtr-br` to `dtr`.
