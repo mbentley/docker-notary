@@ -4,10 +4,10 @@ help:			## Show this help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 build:			## Build Notary images
-	@docker build -t mbentley/notary-server:0.3.0 -t mbentley/notary-server:latest ./notary-server
-	@docker build -t mbentley/notary-signer:0.3.0 -t mbentley/notary-signer:latest ./notary-signer
-	@docker build -t mbentley/notary-migrate:0.3.0 -t mbentley/notary-migrate:latest ./notary-migrate
-	@docker build -t mbentley/notary-mariadb:0.3.0 -t mbentley/notary-mariadb:latest ./notary-mariadb
+	@docker build --pull -t mbentley/notary-server:0.3.0 -t mbentley/notary-server:latest ./notary-server
+	@docker build --pull -t mbentley/notary-signer:0.3.0 -t mbentley/notary-signer:latest ./notary-signer
+	@docker build --pull -t mbentley/notary-migrate:0.3.0 -t mbentley/notary-migrate:latest ./notary-migrate
+	@docker build --pull -t mbentley/notary-mariadb:0.3.0 -t mbentley/notary-mariadb:latest ./notary-mariadb
 
 migrate:		## Run database migrations
 	@docker-compose -f docker-compose-migrate.yml up migrate-server migrate-signer
