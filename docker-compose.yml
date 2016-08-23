@@ -8,7 +8,7 @@ services:
       - notarymysql
       - notarysigner
     networks:
-      dtr-br:
+      dtr-ol:
         aliases:
           - server
     command: -config=/notary/server/server-config.json
@@ -22,7 +22,7 @@ services:
     depends_on:
       - notarymysql
     networks:
-      dtr-br:
+      dtr-ol:
         aliases:
           - signer
     command: -config=/notary/server/signer-config.json
@@ -36,7 +36,7 @@ services:
       - TERM=dumb
       - MYSQL_ALLOW_EMPTY_PASSWORD="true"
     networks:
-      dtr-br:
+      dtr-ol:
         aliases:
           - mysql
     command: mysqld --innodb_file_per_table
@@ -46,6 +46,6 @@ volumes:
     driver: local
 
 networks:
-  dtr-br:
+  dtr-ol:
     external:
-      name: dtr-br
+      name: dtr-ol

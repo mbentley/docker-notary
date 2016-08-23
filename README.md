@@ -15,4 +15,4 @@ Compose - https://docs.docker.com/compose/install/#install-as-a-container
 
 To enable notary services in DTR, set the URL to `https://notaryserver:4443`
 
-If you're using DTR 1.4.x, make sure to change the external network name in `docker-compose.yml` from `dtr-br` to `dtr`.
+If you're using DTR 1.4.x, make sure to change the external network name in `docker-compose.yml` from `dtr-ol` to `dtr`.
