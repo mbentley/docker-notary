@@ -11,6 +11,9 @@ services:
       dtr-ol:
         aliases:
           - server
+      dtr-br:
+        aliases:
+          - server
     command: -config=/notary/server/server-config.json
 
   notarysigner:
@@ -23,6 +26,9 @@ services:
       - notarymysql
     networks:
       dtr-ol:
+        aliases:
+          - signer
+      dtr-br:
         aliases:
           - signer
     command: -config=/notary/server/signer-config.json
@@ -39,6 +45,9 @@ services:
       dtr-ol:
         aliases:
           - mysql
+      dtr-br:
+        aliases:
+          - mysql
     command: mysqld --innodb_file_per_table
 
 volumes:
@@ -49,3 +58,6 @@ networks:
   dtr-ol:
     external:
       name: dtr-ol
+  dtr-br:
+    external:
+      name: dtr-br
